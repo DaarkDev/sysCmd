@@ -1,5 +1,9 @@
 function sysCmd()
-	local user_input = io.read()
-	return print(os.execute(user_input))
+	return print(os.execute(io.read()))
 end
-sysCmd()
+__lookup["exec"] = function()
+	max_args = 1; min_args = 1; system.checkArgs();
+	
+	sysCmd()
+	xpcall(__main, __error)
+end
